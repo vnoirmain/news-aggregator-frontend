@@ -1,58 +1,50 @@
-import './App.css';
 import { AuthProvider } from 'contexts/Auth';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from 'pages/Dashboard';
 import NoMatch from 'pages/NoMatch';
-import ProtectedRoute from 'components/ProtectedRoute';
+import ProtectedRoute from 'routes/ProtectedRoute';
 import Login from 'pages/Login';
 import User from 'pages/User';
-import GuestRoute from 'components/GuestRoute';
+import GuestRoute from 'routes/GuestRoute';
 import Register from 'pages/Register';
+import Layout from 'layouts/Layout';
 
 function App() {
   return (
     <AuthProvider>
-      <Routes>
-        <Route
-          index
-          element={
-            <GuestRoute>
-              <Login />
-            </GuestRoute>
-          }
-        />
-        <Route
-          path="login"
-          element={
-            <GuestRoute>
-              <Login />
-            </GuestRoute>
-          }
-        />
-        <Route
-          path="register"
-          element={<Register />}
-        />
-        <Route
-          path="dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+      <Layout>
+        <Routes>
+          <Route index element={<Dashboard />} />
+          <Route
+            path='login'
+            element={
+              <GuestRoute>
+                <Login />
+              </GuestRoute>
+            }
+          />
+          <Route path='register' element={<Register />} />
+          <Route
+            path='dashboard'
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="user"
-          element={
-            <ProtectedRoute>
-              <User />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path='user'
+            element={
+              <ProtectedRoute>
+                <User />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route path="*" element={<NoMatch />} />
-      </Routes>
+          <Route path='*' element={<NoMatch />} />
+        </Routes>
+      </Layout>
     </AuthProvider>
   );
 }

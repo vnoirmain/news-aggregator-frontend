@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;800;900&display=swap');
+
+body {
+  /* @apply bg-[#f5feff]; */
+  font-family: 'Montserrat';
+}
+
+.container {
+  @apply mx-auto w-full max-w-[1920px] px-10 md:px-5;
+}
