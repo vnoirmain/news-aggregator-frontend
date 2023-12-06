@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#__next {
+	@apply h-screen overflow-y-auto text-white;
+}
+
+.container {
+	@apply mx-auto w-full max-w-6xl px-10 md:px-5;
+}
+
+input,
+select,
+textarea {
+	@apply bg-transparent outline-none;
+}
+
+.btn {
+	@apply rounded text-sm;
+}
+
+.btn.form-btn {
+	@apply rounded bg-indigo-500 text-sm text-white;
+}
+
+.infinite-scroll-component {
+	@apply !overflow-visible;
+}
