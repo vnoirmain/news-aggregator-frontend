@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import useAppDispatch from '@/hooks/useAppDispatch'
 import useAppSelector from '@/hooks/useAppSelector'
@@ -14,7 +15,9 @@ export default function Header() {
 		<header className='bg-background shadow'>
 			<div className='container'>
 				<div className='flex h-20 items-center justify-between'>
-					<div></div>
+					<div>
+						<img src='/images/logo.png' alt='logo' className='w-20 invert' />
+					</div>
 					{!isLoggedIn ? (
 						<nav className='space-x-8'>
 							<span className='cursor-pointer' onClick={() => dispatch(setSignInModalOpen(true))}>
