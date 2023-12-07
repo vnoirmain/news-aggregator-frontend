@@ -19,7 +19,10 @@ export const apiRegister = async (user: IRegisterForm) => {
 	return data
 }
 
-export const apiUpdateUserPreferences = async () => {}
+export const apiUpdateUserPreferences = async (preferences: IPreferencesForm) => {
+	const { data } = await axios.post('/preferences', preferences)
+	return data
+}
 
 export const apiGetNews = async (params: string[]) => {
 	const { data } = await axios.get(`/news?${params.join('&')}`)

@@ -27,3 +27,11 @@ textarea {
 .infinite-scroll-component {
 	@apply !overflow-visible;
 }
+
+.lazy-load-image-background {
+	@apply !block;
+}
+
+.lazy-load-image-loaded.blur {
+	filter: none !important;
+}

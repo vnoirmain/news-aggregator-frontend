@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 interface Props {
 	news: Record<string, any>
@@ -12,10 +13,11 @@ const News: React.FC<Props> = ({ news }) => {
 			target='_blank'
 			title={news.title}
 		>
-			<img
+			<LazyLoadImage
 				src={news.thumbnail || 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg'}
 				alt=''
 				className='h-48 w-full flex-shrink-0 rounded object-cover'
+				effect='blur'
 			/>
 			<div className='flex flex-col justify-between space-y-4'>
 				<p className='line-clamp-2 text-lg'>{news.title}</p>

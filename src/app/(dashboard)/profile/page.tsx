@@ -2,17 +2,37 @@
 
 import { useRouter } from 'next/navigation'
 import { Field, Form } from 'react-final-form'
-import InputForm from '@/components/Forms/InputForm'
+import { apiUpdateUserPreferences } from '@/api/user.api'
 import SelectForm from '@/components/Forms/SelectForm'
 import PageLoader from '@/components/PageLoader'
 import { dataSources } from '@/constants/dataSource'
+import useAppDispatch from '@/hooks/useAppDispatch'
 import useAppSelector from '@/hooks/useAppSelector'
+import { setPreferences } from '@/redux/slices/auth.slice'
+import { setLoading } from '@/redux/slices/modal.slice'
 
 export default function Profile() {
-	const { user, isLoggedIn, loading } = useAppSelector((state) => state.auth)
 	const router = useRouter()
+	const dispatch = useAppDispatch()
+	const { user, isLoggedIn, loading } = useAppSelector((state) => state.auth)
 
-	const handleSubmit = () => {}
+	console.log(user)
+
+	const handleSubmit = async (preferences: IPreferencesForm) => {
+		try {
+			dispatch(setLoading(true))
+
+			const { data } = await apiUpdateUserPreferences(preferences)
+
+			dispatch(setPreferences(data))
+
+			router.push('/')
+		} catch (err) {
+			console.log(err)
+		} finally {
+			dispatch(setLoading(false))
+		}
+	}
 
 	if (loading) {
 		return <PageLoader />
@@ -30,7 +50,6 @@ export default function Profile() {
 					initialValues={{
 						source: user.preferences.source,
 						category: user.preferences.category,
-						author: user.preferences.author || '',
 					}}
 					onSubmit={handleSubmit}
 					render={({ handleSubmit, values }) => (
@@ -61,9 +80,6 @@ export default function Profile() {
 										{...props}
 									/>
 								)}
-							</Field>
-							<Field name='author' className='w-full'>
-								{(props) => <InputForm label='Author' placeholder='Author' {...props} />}
 							</Field>
 							<button
 								type='submit'

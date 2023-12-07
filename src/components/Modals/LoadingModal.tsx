@@ -1,4 +1,4 @@
-import { BounceLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 import useAppSelector from '@/hooks/useAppSelector'
 
 const LoadingModal = () => {
@@ -6,7 +6,7 @@ const LoadingModal = () => {
 
 	return loading ? (
 		<div className='fixed inset-0 z-[200] flex items-center justify-center'>
-			<BounceLoader color='white' />
+			<ClipLoader color='white' />
 		</div>
 	) : (
 		<></>

@@ -39,7 +39,10 @@ const LoginModal = () => {
 			<Form
 				onSubmit={handleLogin}
 				render={({ handleSubmit }) => (
-					<form className='relative mx-auto w-full max-w-lg space-y-4 rounded bg-modal p-5 shadow-md' onSubmit={handleSubmit}>
+					<form
+						className='relative mx-auto w-full max-w-lg space-y-4 rounded bg-modal p-5 shadow-md'
+						onSubmit={handleSubmit}
+					>
 						<h1>Login to your account</h1>
 						<Field name='email'>{(props) => <InputForm label='Email' {...props} />}</Field>
 						<Field name='password'>{(props) => <InputForm type='password' label='Password' {...props} />}</Field>
@@ -51,7 +54,7 @@ const LoginModal = () => {
 							>
 								Cancel
 							</button>
-							<button type='submit' className='rounded bg-primary-600 px-3 py-2 text-sm font-medium'>
+							<button type='submit' className='rounded bg-primary-500 px-3 py-2 text-sm font-medium'>
 								Login
 							</button>
 						</div>
