@@ -35,6 +35,11 @@ const authSlice = createSlice({
 
 			localStorage.removeItem('token')
 		},
+
+		setPreferences(state, action) {
+			state.user = { ...state.user, preferences: { ...state.user?.preferences, ...action.payload } }
+			return state
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(login.fulfilled, (state, action) => {
@@ -81,6 +86,6 @@ const authSlice = createSlice({
 	},
 })
 
-export const { logout } = authSlice.actions
+export const { logout, setPreferences } = authSlice.actions
 
 export default authSlice.reducer

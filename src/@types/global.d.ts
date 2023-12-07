@@ -30,4 +30,9 @@ declare global {
 		author?: string
 		keyword?: string
 	}
+
+	export interface IPreferencesForm {
+		source: DataSource
+		category: string
+	}
 }
